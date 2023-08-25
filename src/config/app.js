@@ -4,17 +4,17 @@ var cookieParser = require("cookie-parser");
 var cors = require("cors");
 var path = require("path");
 
-const errorMiddleware = require("./src/middleware/error");
+const errorMiddleware = require("../middleware/error");
 
 const app = express();
 
 app.use(express.static(path.join(__dirname, "public")));
 
-const foodRoute = require("./src/routes/foodRoute");
-const userRoute = require("./src/routes/userRoute");
-const restaurantRoute = require("./src/routes/restaurantRoute");
-const searchRoute = require("./src/routes/searchRoute");
-const reservationRoute = require("./src/routes/reservationRoute");
+const foodRoute = require("../routes/foodRoute");
+const userRoute = require("../routes/userRoute");
+const restaurantRoute = require("../routes/restaurantRoute");
+const searchRoute = require("../routes/searchRoute");
+const reservationRoute = require("../routes/reservationRoute");
 //cors options
 const corsOptions = {
   //To allow requests from client

@@ -2,10 +2,11 @@
   "name": "ecommerce-api",
   "version": "1.0.0",
   "description": "complete ecommerce solution",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "node src/server.js",
+    "vercel-build": "echo hello"
   },
   "author": "",
   "license": "ISC",
