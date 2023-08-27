@@ -1,12 +1,29 @@
 const handleAsyncError = require("../middleware/handleAsyncError");
 const Reservation = require("../models/reservationModel");
 const userModel = require("../models/userModel");
+const ErrorHandler = require("../utils/errorHandler");
+const { sendEmail } = require("../utils/sendEmail");
 
 // Create a new reservation
 exports.createReservation = handleAsyncError(async (req, res, next) => {
   req.body.user = req.user.id;
   const reservation = await Reservation.create(req.body);
-  res.status(201).json(reservation);
+
+  const message = `Hi ${req.user.name}, \n\n You just requested for a Reservation. This is a confiramtion email is that your seat has been booked successfully.
+  \n\n If you didn't request this email, please ignore it.`;
+
+  try {
+    await sendEmail({
+      email: req.user.email,
+      subject: "Reservation Confirmed!",
+      message: message,
+    });
+    res
+      .status(201)
+      .json({ success: true, message: "Reservation Confirmed!", reservation });
+  } catch (error) {
+    next(new ErrorHandler(error.message, 500));
+  }
 });
 
 // Get all reservations
@@ -54,5 +71,20 @@ exports.deleteReservation = handleAsyncError(async (req, res, next) => {
   if (!reservation) {
     return res.status(404).json({ message: "Reservation not found" });
   }
-  res.json({ message: "Reservation deleted successfully" });
+
+  const message = `Hi ${req.user.name}, \n\n  This is a confiramtion email is that your reservation has been canceled successfully.
+  \n\n Sorry to see you go. Hope we will see in future.`;
+
+  try {
+    await sendEmail({
+      email: req.user.email,
+      subject: "Reservation Canceled!",
+      message: message,
+    });
+    res
+      .status(201)
+      .json({ success: true, message: "Reservation canceled successfully" });
+  } catch (error) {
+    next(new ErrorHandler(error.message, 500));
+  }
 });

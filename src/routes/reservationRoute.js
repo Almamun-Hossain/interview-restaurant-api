@@ -7,13 +7,16 @@ const {
   updateReservation,
   deleteReservation,
 } = require("../controllers/reservationController");
-const { isAuthenticatedUser } = require("../middleware/authentication");
+const {
+  isAuthenticatedUser,
+  authToRegularUser,
+} = require("../middleware/authentication");
 
 // Create a reservation
 router
   .route("/reservations")
   .get(isAuthenticatedUser, getAllReservations)
-  .post(isAuthenticatedUser, createReservation);
+  .post(isAuthenticatedUser, authToRegularUser, createReservation);
 
 // Get all reservations
 router // Get a reservation by ID

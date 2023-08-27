@@ -31,9 +31,6 @@ app.use(cookieParser());
 app.use(cors(corsOptions));
 
 //router
-app.use("/api/v1/", (req, res, next) => {
-  res.send("Hurrah You appliation is running");
-});
 app.use("/api/v1/", foodRoute);
 app.use("/api/v1/", userRoute);
 app.use("/api/v1/", restaurantRoute);

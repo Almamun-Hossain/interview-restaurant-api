@@ -167,6 +167,7 @@ exports.getUserDetails = handleAsyncError(async (req, res, next) => {
  */
 exports.updatePassword = handleAsyncError(async (req, res, next) => {
   const user = await User.findById(req.user.id).select("+password");
+  console.log(user);
   if (req.body.newPassword !== req.body.confirmPassword)
     return next(new ErrorHandler("Password doesn't match", 400));
 

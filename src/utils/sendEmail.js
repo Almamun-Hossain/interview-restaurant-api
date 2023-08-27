@@ -12,7 +12,7 @@ exports.sendEmail = handleAsyncError(async (options) => {
   });
 
   const mailOption = {
-    from: '"FoodCourt" <process.env.MAIL_FROM_ADDRESS>',
+    from: '"Curry Leaves" <process.env.MAIL_FROM_ADDRESS>',
     to: options.email,
     subject: options.subject,
     text: options.message,
