@@ -18,12 +18,16 @@ const reservationRoute = require("../routes/reservationRoute");
 //cors options
 const corsOptions = {
   //To allow requests from client
-  // origin: [
-  //   "http://localhost:3000",
-  //   "http://127.0.0.1",
-  //   "https://restaurant-frontend-chi.vercel.app/",
-  // ],
-  origin: "*",
+  origin: [
+    "*.verce.app",
+    "*.netlify.app",
+    "http://localhost:3000",
+    "http://127.0.0.1",
+    "https://restaurant-frontend-chi.vercel.app",
+    "https://main--endearing-babka-770e34.netlify.app",
+    "https://restaurant-frontend-nine.vercel.app",
+    "https://endearing-babka-770e34.netlify.app/",
+  ],
   credentials: true,
   exposedHeaders: ["set-cookie"],
 };
