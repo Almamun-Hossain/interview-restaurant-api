@@ -18,11 +18,12 @@ const reservationRoute = require("../routes/reservationRoute");
 //cors options
 const corsOptions = {
   //To allow requests from client
-  origin: [
-    "http://localhost:3000",
-    "http://127.0.0.1",
-    "https://restaurant-frontend-chi.vercel.app/",
-  ],
+  // origin: [
+  //   "http://localhost:3000",
+  //   "http://127.0.0.1",
+  //   "https://restaurant-frontend-chi.vercel.app/",
+  // ],
+  origin: "*",
   credentials: true,
   exposedHeaders: ["set-cookie"],
 };
