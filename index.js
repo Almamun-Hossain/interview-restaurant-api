@@ -1,6 +1,6 @@
-const app = require("./config/app");
+const app = require("./src/config/app");
 const dotenv = require("dotenv");
-const connectDatabase = require("./config/database");
+const connectDatabase = require("./src/config/database");
 
 
 
