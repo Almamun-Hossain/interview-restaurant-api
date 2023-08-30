@@ -4,11 +4,15 @@ const ErrorHandler = require("../utils/errorHandler");
 const handleAsyncError = require("./handleAsyncError");
 
 exports.isAuthenticatedUser = handleAsyncError(async (req, res, next) => {
-  const { token } = req.cookies;
+  let authHeader = req.headers["authorization"];
+  console.log(authHeader);
+  // const { token } = req.cookies;
 
-  if (!token)
+  if (!authHeader)
     return next(new ErrorHandler("Please login to access this page", 401));
 
+  let bearer = authHeader.split(" ");
+  let token = bearer[1];
   const decodedData = jwt.verify(token, process.env.JWT_SECRET_KEY);
   req.user = await User.findById(decodedData.id);
   next();
